@@ -91,6 +91,45 @@
 | **P2 / KPI 2:** Histórico completo de vistorias por veículo | `VEICULO`, `VISTORIA`, `TIPO_VISTORIA` | `G02` |
 | **KPI 3:** Faturamento bruto mensal e por tipo de serviço | `VISTORIA`, `TIPO_VISTORIA` | `G03` |
 
+#### Dicionario de Dados 
+| Tabela | Coluna (Campo) | Tipo de Dado | Restrição / Chave | Descrição do Campo |
+| :--- | :--- | :--- | :--- | :--- |
+| **LOJA** | Codigo_Loja | INT | PK (Auto Increment) | Identificador único da loja parceira. |
+| **LOJA** | Nome_Loja | VARCHAR(100) | NOT NULL | Nome comercial da revenda parceira. |
+| **LOJA** | CNPJ_Loja | VARCHAR(20) | UNIQUE, NOT NULL | CNPJ oficial da empresa parceira. |
+| **LOJA** | Descrição_Acordo | VARCHAR(255) | - | Regras ou termos da parceria comercial. |
+| **CLIENTE** | Codigo_Cliente | INT | PK (Auto Increment) | Identificador único do cliente. |
+| **CLIENTE** | CPF_ou_CNPJ | VARCHAR(20) | UNIQUE, NOT NULL | Documento de identificação do cliente. |
+| **CLIENTE** | Nome_Completo | VARCHAR(150) | NOT NULL | Nome ou razão social do cliente. |
+| **CLIENTE** | Tipo_Cliente | VARCHAR(50) | NOT NULL | Classificação ('Particular' ou 'Lojista'). |
+| **CLIENTE** | idLOJA | INT | FK (Ref: LOJA) | Chave estrangeira para clientes lojistas vinculados. |
+| **VEICULO** | Codigo_Veiculo | INT | PK (Auto Increment) | Identificador único do veículo. |
+| **VEICULO** | Placa | VARCHAR(10) | UNIQUE, NOT NULL | Placa oficial de identificação do veículo. |
+| **VEICULO** | Chassi | VARCHAR(30) | UNIQUE, NOT NULL | Número do chassi do veículo. |
+| **VEICULO** | Renavam | VARCHAR(20) | UNIQUE, NOT NULL | Registro Nacional de Veículos Automotores. |
+| **VEICULO** | Modelo_Marca | VARCHAR(100) | NOT NULL | Descrição da marca e modelo do automóvel. |
+| **VISTORIADOR** | Codigo_Vistoriador | INT | PK (Auto Increment) | Identificador único do vistoriador. |
+| **VISTORIADOR** | Nome_Vistoriador | VARCHAR(150) | NOT NULL | Nome completo do profissional técnico. |
+| **VISTORIADOR** | CPF_Vistoriador | VARCHAR(20) | UNIQUE, NOT NULL | CPF do vistoriador responsável. |
+| **TIPO_VISTORIA** | Codigo_TipoVistoria | INT | PK (Auto Increment) | Identificador único do tipo de serviço. |
+| **TIPO_VISTORIA** | Codigo_Tipo | VARCHAR(20) | NOT NULL | Sigla interna da modalidade. |
+| **TIPO_VISTORIA** | Nome_Tipo | VARCHAR(100) | NOT NULL | Nome oficial (ex: ECV, Vistoria Cautelar). |
+| **TIPO_VISTORIA** | Descrições_Procedimentos | VARCHAR(255) | - | Resumo dos procedimentos executados na inspeção. |
+| **PRECOS_VISTORIAS** | Codigo_Preço | INT | PK (Auto Increment) | Identificador único da tabela de preço. |
+| **PRECOS_VISTORIAS** | Tipo_Cliente_Aplicavel | VARCHAR(50) | NOT NULL | Público-alvo da regra de preço ('Particular' ou 'Lojista'). |
+| **PRECOS_VISTORIAS** | Valor_Base | FLOAT | NOT NULL | Valor financeiro cobrado pelo serviço. |
+| **PRECOS_VISTORIAS** | Descrições_Regra | VARCHAR(255) | - | Detalhes sobre a aplicação da tarifa. |
+| **PRECOS_VISTORIAS** | idTIPO_VISTORIA | INT | FK (Ref: TIPO_VISTORIA) | Vinculação com o tipo de serviço cobrado. |
+| **VISTORIA** | Codigo_Vistoria | INT | PK (Auto Increment) | Número de ordem do atendimento realizado. |
+| **VISTORIA** | Data_Hora | DATETIME | NOT NULL | Data e horário exatos da execução da vistoria. |
+| **VISTORIA** | Resultado_Vistoria | VARCHAR(50) | NOT NULL | Status final do laudo ('Aprovado' ou 'Reprovado'). |
+| **VISTORIA** | Observações | VARCHAR(255) | - | Apontamentos técnicos ou motivos de reprovação. |
+| **VISTORIA** | Valor | FLOAT | NOT NULL | Preço cobrado no ato do atendimento. |
+| **VISTORIA** | idTIPO_VISTORIA | INT | NOT NULL, FK | Tipo de vistoria realizada. |
+| **VISTORIA** | idCLIENTE | INT | NOT NULL, FK | Cliente que solicitou o serviço. |
+| **VISTORIA** | idVEICULO | INT | NOT NULL, FK | Veículo inspecionado na pista. |
+| **VISTORIA** | idVISTORIADOR | INT | NOT NULL, FK | Profissional técnico responsável pelo laudo. |
+
 ## 3. Implementação do Banco de Dados (SQL)
 
 O script completo foi desenvolvido para o SGBD MySQL, contemplando a criação do banco, tabelas, restrições (chaves primárias e estrangeiras) e a massa de dados corporativa.
