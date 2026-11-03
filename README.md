@@ -4,10 +4,10 @@
 
 | Nome completo do aluno | RGM | Usuário do GitHub |
 | :--- | :--- | :--- |
-| Gabriel da Silva Santos | 4725681 | GabrielSilvaSantos-tech |
-| Henrique Constantino | [RGM] | [usuario] |
+| Gabriel da Silva Santos | 47256818 | GabrielSilvaSantos-tech |
 | Gustavo Francisco dos Santos | [RGM] | [usuario] |
-| João Victor Rodrigues de Araujo | [RGM] | [usuario] |
+| Henrique Constantino | 47219190 | RiqueCosta27 |
+| João Victor Rodrigues de Araujo | 4758565 | joaoaraujo2023-crypto |
 
 ---
 
